@@ -1,0 +1,16 @@
+name: openhearth_design
+description: Design tokens, typography, tri-theme (light/hearthDark/night), elevation, and motion for all OpenHearth apps.
+version: 0.3.0
+publish_to: none
+
+environment:
+  sdk: '>=3.3.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0

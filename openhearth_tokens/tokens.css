@@ -1,0 +1,150 @@
+/* packages/openhearth_tokens/tokens.css
+ * OpenHearth design tokens — CSS custom properties.
+ * Source of truth: openHearthStyleGuide.md
+ * Keep in sync with: OhColors in packages/openhearth_design/lib/src/colors.dart
+ *
+ * Usage:
+ *   Astro:  @import '../../packages/openhearth_tokens/tokens.css'
+ *   Glean:  import '../../packages/openhearth_tokens/tokens.css' (in src/index.css)
+ */
+
+:root {
+  /* ── Hearth — primary brand (terracotta) ─────────────────────────────── */
+  --oh-hearth-50:  #FDF5F3;
+  --oh-hearth-100: #F8E8E3;
+  --oh-hearth-200: #EDCDC5;
+  --oh-hearth-300: #D9A99E;
+  --oh-hearth-400: #C47B6A;
+  --oh-hearth-500: #A85040;  /* primary interactive */
+  --oh-hearth-600: #8B3E2F;
+  --oh-hearth-700: #6E2F22;
+  --oh-hearth-800: #511F15;
+  --oh-hearth-900: #370F09;
+
+  /* ── Linen — neutrals (warm whites/browns) ───────────────────────────── */
+  --oh-linen-50:  #FBF8F4;  /* app background */
+  --oh-linen-100: #F5EFE6;  /* card surface */
+  --oh-linen-200: #EAE1D4;  /* subtle dividers */
+  --oh-linen-300: #C7B9A0;  /* borders, inactive icons */
+  --oh-linen-400: #B3A08A;  /* placeholder text */
+  --oh-linen-500: #8C7B65;  /* secondary text */
+  --oh-linen-600: #6E5F4C;  /* body text (softer) */
+  --oh-linen-700: #4D3E2E;  /* body text default */
+  --oh-linen-800: #35281C;  /* headings */
+  --oh-linen-900: #2C1810;  /* primary text */
+
+  /* ── Sage — nature/success ───────────────────────────────────────────── */
+  --oh-sage-100: #E0EFEA;
+  --oh-sage-200: #BED8CE;
+  --oh-sage-400: #7BAF96;
+  --oh-sage-500: #5E9478;
+  --oh-sage-600: #4A7B65;
+
+  /* ── Slate — informational/calm ─────────────────────────────────────── */
+  --oh-slate-100: #DDE5F1;
+  --oh-slate-300: #97ACCA;
+  --oh-slate-500: #5C7599;
+  --oh-slate-700: #3A5070;
+
+  /* ── Semantic accents (sparingly) ────────────────────────────────────── */
+  --oh-amber-100: #F5E9C8;
+  --oh-amber-400: #C49A3C;
+  --oh-red-100:   #F5DDD9;
+  --oh-red-500:   #B0382A;
+
+  /* ── Hearth-dark surface palette (evening theme) ─────────────────────── */
+  --oh-dark-surface-base:     #1C1007;
+  --oh-dark-surface-card:     #2A1A0D;
+  --oh-dark-surface-elevated: #3A2215;
+  --oh-dark-surface-high:     #4A2E1F;
+  --oh-dark-border-subtle:    #5A3A28;
+  --oh-dark-border-default:   #6B4A34;
+
+  /* ── Night surface palette (deep-reading theme) ──────────────────────── */
+  /* Neutral grays; leaves the hearth/linen family on purpose. Used when the
+   * user explicitly picks "night" — optimized for low-ambient-light reading.
+   * See ohStyle/CLAUDE.md for the tri-theme rationale. */
+  --oh-night-surface-base:     #0A0A0C;
+  --oh-night-surface-card:     #141418;
+  --oh-night-surface-elevated: #1F1F25;
+  --oh-night-border:           #2A2A32;
+  --oh-night-text-primary:     #EDEDF0;
+  --oh-night-text-dim:         #A0A0AC;
+
+  /* ── Spacing ─────────────────────────────────────────────────────────── */
+  --oh-space-xs:  4px;
+  --oh-space-sm:  8px;
+  --oh-space-md:  16px;
+  --oh-space-lg:  24px;
+  --oh-space-xl:  40px;
+  --oh-space-xxl: 64px;
+
+  /* ── Border radius ───────────────────────────────────────────────────── */
+  --oh-radius-sm:   4px;
+  --oh-radius-md:   8px;
+  --oh-radius-lg:   12px;
+  --oh-radius-xl:   16px;
+  --oh-radius-full: 9999px;
+
+  /* ── Typography ──────────────────────────────────────────────────────── */
+  --oh-font-heading: 'Lora', Georgia, serif;
+  --oh-font-ui:      'Nunito', system-ui, sans-serif;
+  --oh-font-mono:    'JetBrains Mono', 'Consolas', monospace;
+
+  /* ── Elevation (warm shadows; linen-900 tinted) ──────────────────────── */
+  --oh-elevation-raised:
+    0 1px 2px rgba(44,24,16,0.06),
+    0 2px 4px rgba(44,24,16,0.04);
+  --oh-elevation-floating:
+    0 4px 8px  rgba(44,24,16,0.10),
+    0 8px 20px rgba(44,24,16,0.08);
+  --oh-elevation-modal:
+    0 12px 28px rgba(44,24,16,0.14),
+    0 24px 48px -8px rgba(44,24,16,0.10);
+  --oh-elevation-overlay:
+    0 2px 6px  rgba(44,24,16,0.16),
+    0 6px 14px -4px rgba(44,24,16,0.10);
+
+  /* ── Motion ──────────────────────────────────────────────────────────── */
+  --oh-duration-instant:    80ms;
+  --oh-duration-fast:      160ms;
+  --oh-duration-standard:  240ms;
+  --oh-duration-deliberate: 400ms;
+  --oh-ease-standard:    cubic-bezier(0.2, 0.0, 0, 1.0);
+  --oh-ease-emphasized:  cubic-bezier(0.2, 0.0, 0, 1.0);
+  --oh-ease-decelerated: cubic-bezier(0.0, 0.0, 0.2, 1.0);
+
+  /* ── Semantic tokens — light mode defaults ───────────────────────────── */
+  --oh-color-bg:                var(--oh-linen-50);
+  --oh-color-surface:           var(--oh-linen-100);
+  --oh-color-text-primary:      var(--oh-linen-900);
+  --oh-color-text-secondary:    var(--oh-linen-700);
+  --oh-color-text-tertiary:     var(--oh-linen-500);
+  --oh-color-interactive:       var(--oh-hearth-500);
+  --oh-color-interactive-hover: var(--oh-hearth-600);
+  --oh-color-border:            var(--oh-linen-300);
+  --oh-color-border-subtle:     var(--oh-linen-200);
+  --oh-color-error:             var(--oh-red-500);
+  --oh-color-success:           var(--oh-sage-500);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --oh-color-bg:                var(--oh-dark-surface-base);
+    --oh-color-surface:           var(--oh-dark-surface-card);
+    --oh-color-text-primary:      var(--oh-linen-100);
+    --oh-color-text-secondary:    var(--oh-linen-300);
+    --oh-color-text-tertiary:     var(--oh-linen-500);
+    --oh-color-interactive:       var(--oh-hearth-400);
+    --oh-color-interactive-hover: var(--oh-hearth-300);
+    --oh-color-border:            var(--oh-dark-border-default);
+    --oh-color-border-subtle:     var(--oh-dark-border-subtle);
+
+    /* Dark shadows are pure black with higher alpha — the eye reads
+       elevation via contrast, not warmth, on a dark background. */
+    --oh-elevation-raised:   0 1px 3px rgba(0,0,0,0.4);
+    --oh-elevation-floating: 0 4px 12px rgba(0,0,0,0.5);
+    --oh-elevation-modal:    0 12px 32px rgba(0,0,0,0.6);
+    --oh-elevation-overlay:  0 4px 10px rgba(0,0,0,0.55);
+  }
+}
