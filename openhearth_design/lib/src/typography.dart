@@ -118,4 +118,36 @@ abstract final class OhTypography {
         fontSize: 14, fontWeight: FontWeight.w400,
         height: 1.429, color: color,
       );
+
+  // ── Material-scale ladder — habit-lineage apps ──────────────────────────
+
+  /// The Material-scale `TextTheme` ladder shipped by the habit-lineage apps
+  /// (Sundial, Furrow, Glass, Bulwark), moved here verbatim from their
+  /// byte-identical `app_theme.dart` copies.
+  ///
+  /// This is a **different ladder** from the role methods above ([display],
+  /// [headline1], …): it follows the stock Material size scale (57/45/36/…)
+  /// and sets *only* `fontFamily`/`fontSize`/`fontWeight` — no letterSpacing,
+  /// no height. That difference is deliberate; do not "unify" the two.
+  ///
+  /// **Constraint: this block MUST stay byte-equal to what those four apps
+  /// rendered before adopting it.** Their goldens assume it. Changing any
+  /// entry here changes the type of four shipped apps.
+  static const TextTheme materialTextTheme = TextTheme(
+    displayLarge:  TextStyle(fontFamily: 'Lora', fontSize: 57, fontWeight: FontWeight.w700),
+    displayMedium: TextStyle(fontFamily: 'Lora', fontSize: 45, fontWeight: FontWeight.w700),
+    displaySmall:  TextStyle(fontFamily: 'Lora', fontSize: 36, fontWeight: FontWeight.w700),
+    headlineLarge:  TextStyle(fontFamily: 'Lora', fontSize: 32, fontWeight: FontWeight.w700),
+    headlineMedium: TextStyle(fontFamily: 'Lora', fontSize: 28, fontWeight: FontWeight.w600),
+    headlineSmall:  TextStyle(fontFamily: 'Lora', fontSize: 24, fontWeight: FontWeight.w600),
+    titleLarge:  TextStyle(fontFamily: 'Nunito', fontSize: 22, fontWeight: FontWeight.w700),
+    titleMedium: TextStyle(fontFamily: 'Nunito', fontSize: 16, fontWeight: FontWeight.w600),
+    titleSmall:  TextStyle(fontFamily: 'Nunito', fontSize: 14, fontWeight: FontWeight.w600),
+    bodyLarge:  TextStyle(fontFamily: 'Nunito', fontSize: 16),
+    bodyMedium: TextStyle(fontFamily: 'Nunito', fontSize: 14),
+    bodySmall:  TextStyle(fontFamily: 'Nunito', fontSize: 12),
+    labelLarge:  TextStyle(fontFamily: 'Nunito', fontSize: 14, fontWeight: FontWeight.w600),
+    labelMedium: TextStyle(fontFamily: 'Nunito', fontSize: 12, fontWeight: FontWeight.w500),
+    labelSmall:  TextStyle(fontFamily: 'Nunito', fontSize: 11, fontWeight: FontWeight.w500),
+  );
 }

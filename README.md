@@ -11,7 +11,7 @@ ohStyle/
   openhearth_tokens/          ← CSS + TypeScript tokens (Glean, website)
 ```
 
-## openhearth_design — Flutter package (v0.3)
+## openhearth_design — Flutter package (v0.4)
 
 Provides `OhColors`, `OhSpacing`, `OhRadii`, `OhTypography`, `OhElevation`,
 `OhMotion`, and `OhTheme` as `abstract final` classes with static members.
@@ -148,6 +148,27 @@ AnimatedContainer(
 | `code()` | JetBrains Mono | 14 | 400 | Numeric display (Glean only) |
 
 All methods accept an optional `Color? color` override.
+
+### Material TextTheme ladder (v0.4)
+
+`OhTypography.materialTextTheme` is a `const TextTheme` covering the full
+Material scale (Lora display/headline 57–24, Nunito title/body/label 22–11).
+It replaces the byte-identical hand-rolled `_textTheme` blocks that Sundial,
+Furrow, WeatherGlass, and Bulwark each carried in their own `app_theme.dart`:
+
+```dart
+ThemeData(
+  textTheme: OhTypography.materialTextTheme,
+  // ...
+)
+```
+
+It is constrained to stay **byte-equal to what those apps rendered before
+adoption** (each entry sets only fontFamily/fontSize/fontWeight — no
+letterSpacing/height), so the apps' goldens stay green when they delete
+their copies. It is deliberately distinct from the role-method ladder
+above, which carries different sizes plus letterSpacing/height — the two
+must not be unified.
 
 ### Run tests
 
