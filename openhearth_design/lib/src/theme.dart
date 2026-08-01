@@ -239,6 +239,15 @@ abstract final class OhTheme {
         labelStyle: TextStyle(color: inputLabel),
       ),
       dividerTheme: DividerThemeData(color: dividerColor, thickness: 1),
+      // Deliberate, app-wide: plain icons pick up the brand accent without
+      // every call site setting a color. The tradeoff: Flutter 3.38.7
+      // resolves this ambient color ABOVE `IconButton.filled` /
+      // `.filledTonal`'s own `defaultStyleOf`, so an unstyled filled icon
+      // button paints its glyph in `primary` — the same color it just
+      // filled its own background with, i.e. invisible. Use
+      // `OhIconButton.filled` / `.filledTonal` (in `icon_buttons.dart`)
+      // for those two variants; it pins the correct foreground at the
+      // widget level, which outranks this theme setting.
       iconTheme: IconThemeData(color: primary),
       bottomSheetTheme: const BottomSheetThemeData(
         shape: RoundedRectangleBorder(

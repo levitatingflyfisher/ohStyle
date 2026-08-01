@@ -509,6 +509,14 @@ When a custom icon is needed (app-specific metaphors not in Lucide), it must:
 
 Icons inherit the semantic color of their context. The exception: decorative/illustrative icons can use brand accent colors for warmth. Never use multiple colors in a single icon unless it is an explicitly illustrative asset (not a UI affordance icon).
 
+**Filled icon buttons — use `OhIconButton`, not the plain Material widget.** `OhTheme` sets an app-wide `ThemeData.iconTheme.color = primary` so ordinary icons pick up the brand accent for free. That ambient color collides with Flutter's `IconButton.filled` and `IconButton.filledTonal`: on Flutter 3.38.7, the ambient `iconTheme` color resolves above the button's own default foreground, so an unstyled `IconButton.filled` paints its glyph in `primary` — the exact color it just filled its own background with. The glyph disappears. `IconButton.filledTonal` has the same problem against `onSecondaryContainer`.
+
+`openhearth_design` ships `OhIconButton.filled` / `OhIconButton.filledTonal` (`lib/src/icon_buttons.dart`) as replacements for those two variants specifically. They cover the parameters real call sites in this fleet use — `icon`, `onPressed`, `tooltip`, `iconSize`, `constraints`, `padding`, `autofocus`, `focusNode`, `style` — and pin the correct foreground (`onPrimary` / `onSecondaryContainer`) at the widget level, which outranks the ambient theme. A caller-supplied `style` still wins over the built-in foreground. They do not cover every `IconButton.filled` parameter: `isSelected`/`selectedIcon`, `color`, `visualDensity`, `alignment`, `mouseCursor`, `onLongPress`, `enableFeedback`, and `statesController` aren't exposed. A call site that needs one of those should build the plain `IconButton.filled`/`.filledTonal` directly and pass `style: IconButton.styleFrom(foregroundColor: ...)` itself, matching the pattern `OhIconButton` wraps.
+
+Plain (non-filled, non-tonal) icon buttons are unaffected and need no wrapper — the ambient `iconTheme` is exactly what they're supposed to inherit.
+
+*Known, deliberate deferral:* the tidier long-term fix is dropping the app-wide `iconTheme` entirely and letting every Material widget resolve its own per-variant default. That's out of scope here on purpose — it would restyle every plain icon across all thirteen-plus consuming apps, which needs its own review and its own decision, not a bug-fix commit.
+
 ---
 
 ## 9. Component Anatomy
