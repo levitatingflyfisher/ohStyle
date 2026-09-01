@@ -79,14 +79,14 @@ These are the raw named colors. They should never appear directly in component c
 | `hearth-100` | `#F8E8E3` | Badge backgrounds, input fill |
 | `hearth-200` | `#EDCDC5` | Borders, dividers on light surface |
 | `hearth-300` | `#D9A99E` | Disabled state |
-| `hearth-400` | `#C47B6A` | Hover on primary |
-| `hearth-500` | `#A85040` | Primary interactive — buttons, links |
-| `hearth-600` | `#8B3E2F` | Pressed state, strong emphasis |
+| `hearth-400` | `#CD8366` | Warmth on hearthDark (primary there) |
+| `hearth-500` | `#9E4D2C` | Warmth on light — the one primary action |
+| `hearth-600` | `#893F21` | Warmth pressed (light) |
 | `hearth-700` | `#6E2F22` | Dark surface text on primary |
 | `hearth-800` | `#511F15` | Rarely used — max emphasis on light |
 | `hearth-900` | `#370F09` | Approximate only |
 
-*Rationale:* A grounded terracotta — not the trendy 2020 coral, not orange. Think old brick or a well-used cast iron skillet. Something that has lived in a kitchen, not a gallery.
+*Rationale:* A grounded terracotta — not the trendy 2020 coral, not orange. Think old brick or a well-used cast iron skillet. Something that has lived in a kitchen, not a gallery. Since 0.7.0 the 400–600 steps sit at OKLCH hue 42 (clay), moved off hue 32 so warmth no longer shares a grey with the error red (see §2.3).
 
 #### Linen (Neutrals — Warm Whites & Browns)
 
@@ -95,11 +95,11 @@ These are the raw named colors. They should never appear directly in component c
 | `linen-50` | `#FBF8F4` | App background — never pure white |
 | `linen-100` | `#F5EFE6` | Card surface, input background |
 | `linen-200` | `#EAE1D4` | Subtle dividers |
-| `linen-300` | `#C7B9A0` | Borders, inactive icons |
-| `linen-400` | `#B3A08A` | Placeholder text |
-| `linen-500` | `#8C7B65` | Secondary/supporting text |
-| `linen-600` | `#6E5F4C` | Body text in softer contexts |
-| `linen-700` | `#4D3E2E` | Body text default |
+| `linen-300` | `#C7B9A0` | Decorative borders; secondary text on dark |
+| `linen-400` | `#B3A08A` | Hint text on dark. **Never text on light** (2.21:1) |
+| `linen-500` | `#8C7B65` | Control borders (3:1). **Not text on light** (3.58:1) |
+| `linen-600` | `#6E5F4C` | Secondary text and input hints on light (5.40:1) |
+| `linen-700` | `#4D3E2E` | Labels, neutral icons, body text |
 | `linen-800` | `#35281C` | Headings |
 | `linen-900` | `#2C1810` | Primary text — never pure black |
 
@@ -111,9 +111,11 @@ These are the raw named colors. They should never appear directly in component c
 |-------|-----|-------|
 | `sage-100` | `#E0EFEA` | Success backgrounds |
 | `sage-200` | `#BED8CE` | Success borders |
+| `sage-300` | `#7DBB9A` | Success on dark and night |
 | `sage-400` | `#7BAF96` | Icons, secondary accents |
 | `sage-500` | `#5E9478` | Success state, nature-oriented apps (Sundial) |
 | `sage-600` | `#4A7B65` | Pressed success, strong accent |
+| `sage-700` | `#386D54` | Success text on light (5.27:1) |
 
 *Rationale:* Sage reads "nature and health" without the fluorescent-green danger of Material success colors. Used for outdoor tracking (Sundial), feeding/sleep indicators (Lullaby), positive achievements.
 
@@ -122,8 +124,10 @@ These are the raw named colors. They should never appear directly in component c
 | Token | Hex | Usage |
 |-------|-----|-------|
 | `slate-100` | `#DDE5F1` | Info backgrounds |
+| `slate-200` | `#8FB4E4` | Attention on dark and night |
 | `slate-300` | `#97ACCA` | Info borders, secondary UI |
-| `slate-500` | `#5C7599` | Informational state, links in text |
+| `slate-500` | `#5C7599` | Informational state (icons) |
+| `slate-600` | `#39659B` | Attention on light: selection, focus, "new", links |
 | `slate-700` | `#3A5070` | Strong info emphasis |
 
 *Rationale:* A grey-blue that reads "informational" without the clinical coldness of pure grey or the alertness of a bright blue. Used for Porch's availability states, info callouts, read-only data.
@@ -132,10 +136,18 @@ These are the raw named colors. They should never appear directly in component c
 
 | Token | Hex | Usage |
 |-------|-----|-------|
-| `amber-400` | `#C49A3C` | Warning states |
-| `amber-100` | `#F5E9C8` | Warning backgrounds |
-| `red-500` | `#B0382A` | Destructive actions, error states |
-| `red-100` | `#F5DDD9` | Error backgrounds |
+| `amber-700` | `#805307` | Warning text on light |
+| `amber-500` | `#A0701A` | Warning icon on light (marks only, 3:1) |
+| `amber-300` | `#E7B551` | Warning text and icon on dark and night |
+| `amber-100` | `#FCEDCD` | Warning surface (light) |
+| `amber-400` | `#C49A3C` | Legacy. 2.29:1 on linen — not for text or icons |
+| `red-500` | `#9B1D29` | Urgency on light: destructive actions, errors |
+| `red-300` | `#FF939C` | Urgency on dark and night |
+| `red-100` | `#FFE7E6` | Urgency surface (light) |
+| `success-surface` | `#E1F4E9` | Success surface (light) |
+| `attention-surface` | `#E4F0FF` | Attention surface (light) |
+
+Dark status surfaces: hearthDark `dark-urgency-surface #4B1D1F`, `dark-warning-surface #3E2D10`, `dark-success-surface #1B3427`, `dark-attention-surface #202F42`; night `night-urgency-surface #421B1C`, `night-warning-surface #37290F`, `night-success-surface #192E23`, `night-attention-surface #1D2A3A`.
 
 ---
 
@@ -172,7 +184,8 @@ entries, serious low-ambient-light use.
 | `night-surface-base` | `#0A0A0C` | App background (near-black neutral) |
 | `night-surface-card` | `#141418` | Card surfaces |
 | `night-surface-elevated` | `#1F1F25` | Modals, sheets, elevated content |
-| `night-border` | `#2A2A32` | Borders (single value — keeps contrast high) |
+| `night-border` | `#2A2A32` | Decorative borders and dividers |
+| `night-border-control` | `#76767F` | A field's only edge (3.64:1 on elevated) |
 | `night-text-primary` | `#EDEDF0` | Primary text (near-white, slight cool cast) |
 | `night-text-dim` | `#A0A0AC` | Secondary text |
 
@@ -190,7 +203,7 @@ entries, serious low-ambient-light use.
 | Theme | Default accent | Why |
 |---|---|---|
 | Light | `hearth-500` | Brand anchor, excellent contrast on linen |
-| Hearth-dark | `hearth-400` | Slightly lighter terracotta for dark-mode contrast; still warm |
+| Hearth-dark | `hearth-400` (`#CD8366`) | Lighter clay for dark-mode contrast (4.96:1 on elevated); still warm |
 | Night | `sage-400` | Softer than hearth-on-near-black; easier on the eyes at low ambient light; reinforces the "deliberate deep work" register |
 
 All three accept `appAccent:` to override (Lullaby uses `sage-500` across all
@@ -198,57 +211,72 @@ three; Garner might use a more authoritative slate).
 
 ---
 
-### 2.3 Semantic Color Tokens
+### 2.3 The Colour Language and Semantic Tokens
 
-These are the tokens that component code actually uses. They map to primitives above but can remap for dark mode without changing component code.
+Red does two jobs in this fleet, and the system keeps them apart. Three roles, five families (research note `2026-09-26-colour-language.md`; references: MIL-STD-2525, 14 CFR 25.1322, IBM Carbon, Apple HIG):
+
+| Family | Role | Carried by |
+|---|---|---|
+| **Warmth** (clay, OKLCH hue 42) | Who we are: the one primary action per screen, identity moments | Fill or large type; never alone on anything that can fail |
+| **Urgency** (crimson, hue 22) | Error, destructive | Hue **plus** an icon **plus** a word, always |
+| **Warning** (ochre) | "Check this" | Hue plus a triangle icon plus a word |
+| **Attention** (slate blue) | Pointing-out: selection, focus, "new", links | Hue plus a shape: ring, check, dot, underline |
+| **Success** (sage) | Done, safe | Hue plus a check or a word |
+| **Neutral** (linen; grey on night) | Surfaces, text, borders, **icons and chrome** | — |
+
+**The rule for red.**
+1. Urgency never relies on hue. Take the colour away and an error still reads as an error (icon + word). `showOhConfirm(destructive: true)` carries the octagon icon for this reason.
+2. Warmth never appears on danger — not on a destructive button, a failed state or a validation message.
+3. Warmth and urgency never share a container as fills. A destructive confirm has one urgency button and a neutral Cancel.
+4. Chrome is neutral. Icons, app-bar glyphs, dividers and inactive slider tracks take neutral tones (`OhTheme`'s `iconTheme` is `onSurfaceVariant` since 0.7.0).
+5. Attention always has a shape; blue and warmth share a grey (1.08:1 on light).
+6. An `appAccent` must stay clear of urgency and attention in its theme (≥ 0.08 ΔE_ok). Lilt's `hearth-300` is 0.010 from dark urgency under deuteranopia and needs a different accent or heavier marks.
+
+In Flutter the roles are `OhColorRoles` (a `ThemeExtension` every `OhTheme` builder attaches; read it with `OhColorRoles.of(context)`). `test/contrast_test.dart` computes WCAG ratios for every pair the themes wire: 4.5:1 for text, 3:1 for icons and control borders.
+
+**Measured on three grounds.** The note sized warmth and the light warning icon on the app and card grounds only. On light's raised container (`linen-200`) its values fell short (warmth 4.27:1, warning icon 2.86:1), so 0.7.0 darkened both within their hue bands: warmth `#A4512E` → `#9E4D2C` (4.57:1 on `linen-200`, still OKLCH hue 42) and warning icon `#AD7C1D` → `#A0701A` (3.36:1, hue 76). The cost: warmth and urgency separate by 1.37:1 luminance and 0.090 ΔE_ok instead of the note's 1.46 and 0.102 (the old pair was 1.13 and 0.045). Rule 1 carries the separation, as the note intended.
 
 ```
 -- Surface --
-color-surface-app          light: linen-50      dark: dark-surface-base
-color-surface-card         light: #FFFFFF        dark: dark-surface-card
-color-surface-elevated     light: #FFFFFF        dark: dark-surface-elevated
-color-surface-overlay      light: linen-900/40%  dark: #000000/50%
-color-surface-tinted       light: hearth-50      dark: dark-surface-high
+color-surface-app          light: linen-50      dark: dark-surface-base      night: night-surface-base
+color-surface-card         light: linen-100     dark: dark-surface-card      night: night-surface-card
+color-surface-elevated     light: linen-100     dark: dark-surface-elevated  night: night-surface-elevated
+color-surface-overlay      light: linen-900/40% dark: #000000/50%
+color-surface-tinted       light: hearth-50     dark: dark-surface-high
 
 -- Text --
-color-text-primary         light: linen-900      dark: linen-100
-color-text-secondary       light: linen-700      dark: linen-300
-color-text-tertiary        light: linen-500      dark: linen-500
-color-text-on-primary      light: linen-50       dark: linen-50
-color-text-on-dark         light: linen-50       dark: linen-50
-color-text-placeholder     light: linen-400      dark: linen-600
-color-text-link            light: slate-500      dark: slate-300
-color-text-disabled        light: linen-300      dark: linen-700
+color-text-primary         light: linen-900     dark: linen-100   night: night-text-primary
+color-text-secondary       light: linen-700     dark: linen-300   night: night-text-dim
+color-text-tertiary        light: linen-600     dark: linen-400   night: night-text-dim
+color-text-on-primary      light: white         dark: linen-900   night: night-surface-base
+color-text-placeholder     light: linen-600     dark: linen-400   night: night-text-dim
+color-text-link            light: slate-600     dark: slate-200   night: slate-200
+color-text-disabled        light: linen-300     dark: linen-700   (exempt from contrast)
 
--- Brand Interactive --
-color-interactive-primary  light: hearth-500     dark: hearth-400
-color-interactive-hover    light: hearth-600     dark: hearth-300
-color-interactive-pressed  light: hearth-700     dark: hearth-500
-color-interactive-focus    light: hearth-500     dark: hearth-400  (ring)
-color-interactive-disabled light: linen-300      dark: linen-700
+-- Warmth (brand interactive) --
+color-interactive-primary  light: hearth-500    dark: hearth-400  night: sage-400
+color-interactive-hover    light: hearth-600    dark: hearth-300
+color-interactive-focus    use attention + a 2px ring, not warmth
+
+-- Chrome --
+color-icon                 light: linen-700     dark: linen-300   night: night-text-dim
 
 -- Borders --
-color-border-subtle        light: linen-200      dark: dark-border-subtle
-color-border-default       light: linen-300      dark: dark-border-default
-color-border-strong        light: linen-500      dark: linen-500
+color-border-subtle        light: linen-200     dark: dark-border-subtle   night: night-border
+color-border-default       light: linen-300     dark: dark-border-default  night: night-border
+color-border-control       light: linen-500     dark: linen-500            night: night-border-control
 
--- Status --
-color-success-surface      light: sage-100       dark: sage-600/20%
-color-success-border       light: sage-200       dark: sage-500/40%
-color-success-text         light: sage-600       dark: sage-400
-color-success-icon         light: sage-500       dark: sage-400
-
-color-info-surface         light: slate-100      dark: slate-700/20%
-color-info-text            light: slate-700      dark: slate-300
-color-info-icon            light: slate-500      dark: slate-300
-
-color-warning-surface      light: amber-100      dark: amber-400/20%
-color-warning-text         light: amber-400      dark: amber-400
-color-warning-icon         light: amber-400      dark: amber-400
-
-color-error-surface        light: red-100        dark: red-500/20%
-color-error-text           light: red-500        dark: red-500
-color-error-icon           light: red-500        dark: red-500
+-- Status (dark and night share values; surfaces differ) --
+color-error                light: red-500       dark: red-300     on-error: white / linen-900 / night-surface-base
+color-error-surface        light: red-100       dark: dark-urgency-surface   night: night-urgency-surface
+color-warning-text         light: amber-700     dark: amber-300
+color-warning-icon         light: amber-500     dark: amber-300
+color-warning-surface      light: amber-100     dark: dark-warning-surface   night: night-warning-surface
+color-success              light: sage-700      dark: sage-300
+color-success-surface      light: success-surface  dark: dark-success-surface  night: night-success-surface
+color-attention            light: slate-600     dark: slate-200
+color-attention-surface    light: attention-surface  dark: dark-attention-surface  night: night-attention-surface
+color-info-text            light: slate-700     dark: slate-300
 ```
 
 ---
@@ -283,37 +311,39 @@ A rounded humanist sans. The roundedness contributes to the warmth; the sans-nes
 
 *Use for:* All UI text, body paragraphs, labels, captions, buttons, navigation.
 
-**Mono (Glean only):** [JetBrains Mono](https://fonts.google.com/specimen/JetBrains+Mono)  
-Used exclusively in Glean for code display. Consistent with developer tooling defaults.
+**Mono:** the platform's `monospace`. No monospace file is bundled anywhere in the fleet, so `OhTypography.code()` asks for the generic family rather than a face that is not there. (`tokens.css` still names JetBrains Mono for Glean's web frontend.)
 
-Both Lora and Nunito are Google Fonts (OFL licensed), load from `fonts.google.com` in React/PWA contexts, and are available via `google_fonts` package in Flutter.
+Lora and Nunito are OFL-licensed. The canonical files live in `openhearth_design/fonts/` (Lora 400, 400 italic, 500, 700; Nunito 400, 500, 600, 700; `OFL.txt`). Since 0.7.1 `openhearth_design` declares them as package fonts and every `OhTypography` style names them with `package: 'openhearth_design'`, so apps get them without copies; nothing fetches from `fonts.google.com` at runtime. **There is no Lora 300 or 600 and no Nunito italic file anywhere in the fleet** — do not request those weights; Flutter would silently substitute a neighbour or synthesise a fake.
+
+*Why Nunito below 30 px:* Kadavy's rule is to keep custom faces above 30 px on 100–150 ppi screens. Phones render at 300–450 ppi, where Nunito's open, rounded forms hold up at 13–16 px, and the fleet is offline by construction so a system font would mean a different face on every device. The 30 px rule is honoured for Lora, which only sets headings (23 px and up).
 
 ---
 
-### 3.2 Type Scale
+### 3.2 Type Scale — the ladder
 
-Base unit: 16px. All sizes in `px` / `rem` equivalents. Flutter uses `sp` (logical, scales with system font size setting — respect it).
+One ladder for every role and every Material slot: a 16 px body stepped by about 1.2 (a minor third) and rounded. `OhTypography.ladder`:
 
-| Token | Size | Line Height | Letter Spacing | Primary Font | Use |
-|-------|------|-------------|----------------|--------------|-----|
-| `text-xs` | 12px / 0.75rem | 16px | +0.4px | Nunito | Captions, labels, timestamps |
-| `text-sm` | 14px / 0.875rem | 20px | +0.2px | Nunito | Secondary body, metadata |
-| `text-base` | 16px / 1rem | 24px | 0 | Nunito | Primary body text |
-| `text-lg` | 18px / 1.125rem | 28px | -0.1px | Nunito | Slightly prominent body |
-| `text-xl` | 20px / 1.25rem | 32px | -0.2px | Nunito or Lora | Subheading, card titles |
-| `text-2xl` | 24px / 1.5rem | 36px | -0.3px | Lora | H3-level headings |
-| `text-3xl` | 30px / 1.875rem | 44px | -0.4px | Lora | H2-level headings |
-| `text-4xl` | 36px / 2.25rem | 52px | -0.5px | Lora | H1, section titles |
-| `text-5xl` | 48px / 3rem | 64px | -0.6px | Lora | Hero, display, milestone numbers |
-| `text-6xl` | 64px / 4rem | 80px | -0.8px | Lora | Large achievement numbers |
+| Step | Size | ×prev | Roles (family, weight) |
+|------|------|-------|------------------------|
+| −1 | 13 | 1.23 | bodySm / caption (N400), label / buttonSm (N600), labelSm (N700), listSubtitle (N400), code (mono) |
+| 0 | 16 | — | body (N400), button (N600), listTitle (N600) |
+| 1 | 19 | 1.19 | bodyLg (N400), titleSm (N600) |
+| 2 | 23 | 1.21 | headline4 (L700), title (N700) |
+| 3 | 28 | 1.22 | headline3 (L700) |
+| 4 | 33 | 1.18 | headline2 (L700) |
+| 5 | 40 | 1.21 | headline1 (L700) |
+| 6 | 48 | 1.20 | display (L700) |
+| 7 | 57 | 1.19 | materialTextTheme displayLarge only |
+
+No two sizes in use are within 2 px (the old 11/12/14 and 22/24 steps read as mistakes, not levels). Below 16 there is exactly one step; roles that share 13 px differ by weight. Body and list leading is 1.4 (Kadavy's 120–140 percent); headings 1.15–1.3. `test/type_ladder_test.dart` enforces all of this.
 
 ### 3.3 Font Weights
 
 | Token | Nunito | Lora | Use |
 |-------|--------|------|-----|
 | `weight-regular` | 400 | 400 | Body, paragraph text |
-| `weight-medium` | 500 | — | UI labels, form labels |
-| `weight-semibold` | 600 | — | Button labels, subheadings |
+| `weight-medium` | 500 | 500 (file exists, unused by roles) | Material labelSmall |
+| `weight-semibold` | 600 | **none — no file** | Button labels, labels, list titles |
 | `weight-bold` | 700 | 700 | Strong emphasis, headings |
 
 ### 3.4 Semantic Text Roles
@@ -321,30 +351,32 @@ Base unit: 16px. All sizes in `px` / `rem` equivalents. Flutter uses `sp` (logic
 Rather than hardcoding size/weight in components, use these role tokens:
 
 ```
-type-display:        Lora 700, text-5xl, linen-900
-type-headline-1:     Lora 700, text-4xl, linen-900
-type-headline-2:     Lora 700, text-3xl, linen-900
-type-headline-3:     Lora 700, text-2xl, linen-800
-type-headline-4:     Lora 700, text-xl, linen-800
-type-title:          Nunito 700, text-xl, linen-900
-type-title-sm:       Nunito 600, text-lg, linen-900
-type-body-lg:        Nunito 400, text-lg, linen-800
-type-body:           Nunito 400, text-base, linen-700
-type-body-sm:        Nunito 400, text-sm, linen-700
-type-label:          Nunito 500, text-sm, linen-700, +0.2px tracking
-type-label-sm:       Nunito 500, text-xs, linen-600, +0.4px tracking
-type-caption:        Nunito 400, text-xs, linen-500
-type-button:         Nunito 600, text-base, tracking 0
-type-button-sm:      Nunito 600, text-sm, tracking +0.1px
-type-code:           JetBrains Mono 400, text-sm (Glean only)
+type-display:        Lora 700, 48, h1.15
+type-headline-1:     Lora 700, 40, h1.2
+type-headline-2:     Lora 700, 33, h1.2
+type-headline-3:     Lora 700, 28, h1.25
+type-headline-4:     Lora 700, 23, h1.3
+type-title:          Nunito 700, 23, h1.3
+type-title-sm:       Nunito 600, 19, h1.3   (app bar)
+type-body-lg:        Nunito 400, 19, h1.4   (prose)
+type-body:           Nunito 400, 16, h1.4
+type-body-sm:        Nunito 400, 13, h1.4, +0.2px
+type-label:          Nunito 600, 13, +0.2px
+type-label-sm:       Nunito 700, 13, +0.4px (section labels, sentence case)
+type-caption:        Nunito 400, 13, +0.3px
+type-button:         Nunito 600, 16
+type-button-sm:      Nunito 600, 13, +0.2px
+type-list-title:     Nunito 600, 16         (ListTile title)
+type-list-subtitle:  Nunito 400, 13         (ListTile subtitle)
+type-code:           monospace 400, 13
 ```
 
 ### 3.5 Typography Rules
 
 1. **Never use pure black for text.** Always linen-900 or semantic `color-text-primary`.
 2. **Avoid more than two type sizes in a single component.** If you need three, reconsider the component structure.
-3. **Minimum body text size is 14px (text-sm).** 12px captions are for supplemental info only.
-4. **Lora at small sizes (below text-xl) is optional.** Nunito handles midrange well. Don't force the serif where it won't render well.
+3. **Body text is 16 px; the only smaller step is 13 px**, for secondary text, labels and captions. Nothing goes below 13.
+4. **Lora sets headings only, 23 px and up.** Nunito handles midrange well. Don't force the serif where it won't render well.
 5. **Long-form text (Lullaby feeding notes, Garner transaction history) uses text-base/Nunito/linen-700.** Serif is for headings, not paragraphs.
 6. **Respect system font size preferences.** In Flutter, use `sp` not `dp` for text. In CSS, use `rem` not `px`.
 
@@ -379,9 +411,12 @@ Minimum interactive target: **44×44dp** (follows Apple HIG and Android Material
 
 | Context | Max width | Padding (mobile) | Padding (tablet+) |
 |---------|-----------|------------------|--------------------|
-| Standard page content | 720px | space-4 (16px) horizontal | space-8 (32px) |
+| Phone-shaped app screens (lists, forms, trackers) | 640px | space-4 (16px) horizontal | space-4 (16px) |
+| Standard page content (reading, prose) | 720px | space-4 (16px) horizontal | space-8 (32px) |
 | Wide content (Garner charts) | 960px | space-4 | space-12 |
 | Full bleed | none | 0 | 0 |
+
+In Flutter these are `OhPage` (`maxWidth` defaults to `OhPage.phoneMaxWidth`, 640; `proseMaxWidth` 720 and `wideMaxWidth` 960 match the rows above). Content is centred and top-aligned on wide screens and sits inside the safe area; app bars and backgrounds stay full width. A mouse wheel over the side margins scrolls the content (forwarded to the first vertical scrollable inside); trackpad pan over the margins is not forwarded.
 
 ### 4.4 Grid
 
@@ -509,13 +544,15 @@ When a custom icon is needed (app-specific metaphors not in Lucide), it must:
 
 Icons inherit the semantic color of their context. The exception: decorative/illustrative icons can use brand accent colors for warmth. Never use multiple colors in a single icon unless it is an explicitly illustrative asset (not a UI affordance icon).
 
-**Filled icon buttons — use `OhIconButton`, not the plain Material widget.** `OhTheme` sets an app-wide `ThemeData.iconTheme.color = primary` so ordinary icons pick up the brand accent for free. That ambient color collides with Flutter's `IconButton.filled` and `IconButton.filledTonal`: on Flutter 3.38.7, the ambient `iconTheme` color resolves above the button's own default foreground, so an unstyled `IconButton.filled` paints its glyph in `primary` — the exact color it just filled its own background with. The glyph disappears. `IconButton.filledTonal` has the same problem against `onSecondaryContainer`.
+**Chrome icons are neutral.** Since 0.7.0 `OhTheme` sets `ThemeData.iconTheme.color = onSurfaceVariant` (it was `primary`): warmth is kept for the one primary action, and an icon in the accent no longer competes with it (colour language rule 4, §2.3).
+
+**Filled icon buttons — use `OhIconButton`, not the plain Material widget.** The ambient `iconTheme` collides with Flutter's `IconButton.filled` and `IconButton.filledTonal`: on Flutter 3.38.7, the ambient color resolves above the button's own default foreground, so an unstyled `IconButton.filled` paints its glyph in the neutral icon color over its primary fill instead of `onPrimary` (before 0.7.0, in `primary` itself — invisible). `IconButton.filledTonal` has the same problem against `onSecondaryContainer`.
 
 `openhearth_design` ships `OhIconButton.filled` / `OhIconButton.filledTonal` (`lib/src/icon_buttons.dart`) as replacements for those two variants specifically. They cover the parameters real call sites in this fleet use — `icon`, `onPressed`, `tooltip`, `iconSize`, `constraints`, `padding`, `autofocus`, `focusNode`, `style` — and pin the correct foreground (`onPrimary` / `onSecondaryContainer`) at the widget level, which outranks the ambient theme. A caller-supplied `style` still wins over the built-in foreground. They do not cover every `IconButton.filled` parameter: `isSelected`/`selectedIcon`, `color`, `visualDensity`, `alignment`, `mouseCursor`, `onLongPress`, `enableFeedback`, and `statesController` aren't exposed. A call site that needs one of those should build the plain `IconButton.filled`/`.filledTonal` directly and pass `style: IconButton.styleFrom(foregroundColor: ...)` itself, matching the pattern `OhIconButton` wraps.
 
 Plain (non-filled, non-tonal) icon buttons are unaffected and need no wrapper — the ambient `iconTheme` is exactly what they're supposed to inherit.
 
-*Known, deliberate deferral:* the tidier long-term fix is dropping the app-wide `iconTheme` entirely and letting every Material widget resolve its own per-variant default. That's out of scope here on purpose — it would restyle every plain icon across all thirteen-plus consuming apps, which needs its own review and its own decision, not a bug-fix commit.
+*Known, deliberate deferral:* the tidier long-term fix is dropping the app-wide `iconTheme` entirely and letting every Material widget resolve its own per-variant default. 0.7.0 made it neutral instead, which is the colour-language change the operator approved; dropping it remains a separate decision.
 
 ---
 
@@ -529,7 +566,7 @@ Three variants:
 
 **Primary**
 - Background: `color-interactive-primary` (hearth-500)
-- Text: `color-text-on-primary` (linen-50)
+- Text: `color-text-on-primary` (white on light, 5.91:1)
 - Radius: `radius-lg` (12px)
 - Padding: `space-3` top/bottom, `space-6` left/right
 - Font: `type-button`
@@ -553,7 +590,7 @@ Three variants:
 - Hover: background → hearth-50
 - Use for: in-context actions, destructive confirmation cancel buttons
 
-**Destructive variant:** applies to any button type, uses red-500 in place of hearth-500. Only used for irreversible actions (delete, remove).
+**Destructive variant:** applies to any button type, uses `color-error` (red-500 light, red-300 dark) in place of warmth **and** carries the urgency icon and a verb ("Delete 3 items"). Paired with a neutral Cancel, never with a warmth-filled button.
 
 **Size variants:**
 - Default (above): most contexts
@@ -562,14 +599,14 @@ Three variants:
 
 ### 9.2 Text Inputs
 
-- Background: `color-surface-card` (white/dark-surface-card)
-- Border: 1.5px `color-border-default`
+- Background: `color-surface-card` (linen-100 / dark-surface-card / night-surface-elevated)
+- Border: 1px `color-border-control` — on a filled field the border is its only edge, so it must reach 3:1
 - Border radius: `radius-md` (8px)
 - Padding: `space-3` top/bottom, `space-4` left/right
 - Text: `type-body`, `color-text-primary`
 - Placeholder: `color-text-placeholder`
 - Focus border: `color-interactive-primary`, 2px
-- Error border: `color-error-text`, error message below in `type-caption` / `color-error-text`
+- Error border: `color-error`, error message below in `type-caption` / `color-error`, led by the urgency icon
 - Helper text: `type-caption` / `color-text-tertiary` below field
 - Labels: `type-label` above field, `color-text-secondary`
 
@@ -590,8 +627,8 @@ For scrollable lists (feed history, contacts, etc.):
 
 - Min height: 56dp (48dp content + `space-2` top/bottom padding)
 - Leading: icon (icon-lg) or avatar
-- Title: `type-title-sm`
-- Subtitle/metadata: `type-body-sm`, `color-text-secondary`
+- Title: `type-list-title` (16 w600) — `OhTheme` wires it into `listTileTheme`
+- Subtitle/metadata: `type-list-subtitle` (13 w400), `color-text-secondary`
 - Trailing: icon or label
 - Separator: 1px `color-border-subtle` at 50% opacity, inset from left at leading item right edge
 - No separator on last item or after section headers
@@ -651,6 +688,31 @@ Structure:
 
 Tone: Warm, not apologetic. "Nothing here yet — add your first entry" not "No data found."
 
+### 9.9 Error States
+
+Shipped as `OhErrorState` in `openhearth_design`. A failure is a state with a way out, never a code.
+
+- Title: short and human, naming what did not happen ("Couldn't load your list").
+- Body: one plain sentence, what happened and what to do next (`ohFriendlyErrorMessage` supplies it for common exceptions).
+- Action: a Retry button (48dp minimum) whenever the app can recover.
+- Details: the technical error, hidden until asked for, selectable for bug reports. The raw exception is never the main text.
+
+### 9.10 Deleting: Confirm or Undo
+
+Shipped as `showOhConfirm`, `OhUndoController` and `OhUndoBar` in `openhearth_design`.
+
+- **Easy gesture** (swipe, long-press shortcut): confirm first. The confirm button names the act ("Delete 3 items"); "OK", "Yes" or a bare "Delete" are not labels. The button is neutral unless the act is destructive.
+- **Deliberate delete** (a Delete button or menu item): act at once, soft-deleted, and offer Undo in a persistent bar. The bar has no timer. It ends when the person taps Undo, closes it, deletes something else, or leaves the screen.
+- **A lasting way back**: every app with deletes has a Recently deleted list. "Delete forever" there is the only hard delete, and it confirms.
+
+### 9.11 Theme Control
+
+Shipped as `OhThemeModePreference` and `OhThemeToggle` in `openhearth_design`.
+
+- Three choices: **Light**, **Dark**, **Follow phone**. Follow phone is the default.
+- Reachable in one tap, at most two, from every primary screen: the toggle sits in the app bar as an icon plus a short label ("Auto", "Light", "Dark"). Settings may repeat it.
+- Each app picks which dark theme is its Dark (`hearthDark` or `night`). Apps offering all three themes by name keep that picker in Settings.
+
 ---
 
 ## 10. Platform Implementation
@@ -670,7 +732,7 @@ MaterialApp(
 
 Implementation notes:
 - Use `ColorScheme.fromSeed(seedColor: OpenHearthColors.hearth500)` as the base, then override with semantic tokens
-- Typography via `google_fonts`: `GoogleFonts.lora()` and `GoogleFonts.nunito()`
+- Typography from bundled assets only (the package fonts `openhearth_design` declares); never `google_fonts`
 - Respect `MediaQuery.textScaleFactor` — never override system font scaling
 - Elevation via custom `BoxDecoration` using `OpenHearthShadows` tokens (Flutter's built-in elevation uses cold grey)
 - All motion uses `OpenHearthDurations` and `OpenHearthEasing` constants
@@ -707,7 +769,7 @@ Implemented as CSS custom properties (CSS variables) loaded in `:root`. Works wi
 
 ```css
 :root {
-  --oh-color-interactive-primary: #A85040;
+  --oh-color-interactive-primary: #9E4D2C;
   --oh-color-surface-app: #FBF8F4;
   --oh-color-text-primary: #2C1810;
   /* ... all semantic tokens */
@@ -763,8 +825,9 @@ This section is brief — a full copy guide is out of scope here. But because mi
 |---------|---------|---------|
 | Empty state headline | Positive potential, not absence | "Your first adventure starts here" |
 | Empty state body | Brief, actionable | "Tap + to add a session" |
-| Destructive confirm | State the consequence | "Delete this entry? This can't be undone." |
-| Destructive button | Red, specific verb | "Delete entry" not just "Delete" |
+| Easy-gesture confirm | State the consequence truthfully | "Delete this entry? It moves to Recently deleted." ("can't be undone" only for Delete forever) |
+| Confirm button | Specific verb and object; danger colour only when destructive | "Delete entry" not "Delete" or "OK" |
+| Deliberate delete | Act, then offer Undo that stays until the next action | "Deleted 3 items  [Undo]" |
 | Loading | Active verb or none | "Saving..." or skeleton only |
 | Error | What happened + what to do | "Couldn't save. Check your connection and try again." |
 | Success | Brief, specific | "Saved" or "1h 45m recorded" |
@@ -782,18 +845,18 @@ All text must meet WCAG 2.1 AA minimum:
 - Large text (18px+ bold or 24px+ regular): 3:1 minimum
 - UI components and icons: 3:1 against adjacent color
 
-**Verified passes (spot check — run full audit before v1 ship):**
+**Measured, not spot-checked.** `openhearth_design/test/contrast_test.dart` computes the WCAG 2.x ratio for every text/background and mark/background pair the three built themes wire — every text-theme slot, the colour-scheme `on*` pairs, input hint/label/border, list tiles, icons, and every `OhColorRoles` role and status surface — against the scaffold, card and raised container, and fails under 4.5:1 for text or 3:1 for marks. A few measured values (light unless noted):
 
-| Foreground | Background | Ratio | Pass? |
-|------------|------------|-------|-------|
-| linen-900 (`#2C1810`) | linen-50 (`#FBF8F4`) | ~15.1:1 | ✓ AAA |
-| hearth-500 (`#A85040`) | linen-50 (`#FBF8F4`) | ~7.2:1 | ✓ AAA |
-| linen-50 (`#FBF8F4`) | hearth-500 (`#A85040`) | ~7.2:1 | ✓ AAA |
-| linen-700 (`#4D3E2E`) | linen-50 (`#FBF8F4`) | ~9.6:1 | ✓ AAA |
-| sage-600 (`#4A7B65`) | sage-100 (`#E0EFEA`) | ~5.3:1 | ✓ AA |
-| red-500 (`#B0382A`) | red-100 (`#F5DDD9`) | ~4.6:1 | ✓ AA |
-
-Run the full semantic token matrix through a contrast checker before v1 publication.
+| Foreground | Background | Ratio |
+|------------|------------|-------|
+| linen-900 `#2C1810` | linen-100 `#F5EFE6` | 14.75:1 |
+| linen-600 `#6E5F4C` (secondary, hint) | linen-100 | 5.40:1 |
+| hearth-500 `#9E4D2C` (warmth) | linen-100 | 5.17:1 |
+| white | hearth-500 | 5.91:1 |
+| red-500 `#9B1D29` (urgency) | linen-100 | 7.06:1 |
+| linen-500 `#8C7B65` (control border) | linen-100 | 3.58:1 |
+| red-300 `#FF939C` (dark urgency) | dark-surface-elevated `#3A2215` | 6.98:1 |
+| night-border-control `#76767F` | night-surface-elevated `#1F1F25` | 3.64:1 |
 
 ### 12.2 Focus Visibility
 

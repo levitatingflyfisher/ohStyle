@@ -18,8 +18,8 @@ void main() {
     _test('body() has fontSize 16', () {
       expect(OhTypography.body().fontSize, 16.0);
     });
-    _test('labelSm() has fontSize 12', () {
-      expect(OhTypography.labelSm().fontSize, 12.0);
+    _test('labelSm() has fontSize 13', () {
+      expect(OhTypography.labelSm().fontSize, 13.0);
     });
     _test('color override is applied', () {
       final style = OhTypography.body(color: OhColors.hearth500);
@@ -171,6 +171,57 @@ void main() {
         ),
       );
       expect(captured.primary, OhColors.hearth500);
+    });
+  });
+
+  group('colour language wiring (0.7.0)', () {
+    final cases = <String, (ThemeData, OhColorRoles)>{
+      'light': (OhTheme.light(), OhColorRoles.light),
+      'hearthDark': (OhTheme.hearthDark(), OhColorRoles.hearthDark),
+      'night': (OhTheme.night(), OhColorRoles.night),
+    };
+    for (final MapEntry(key: name, value: (t, roles)) in cases.entries) {
+      _test('$name carries its OhColorRoles', () {
+        expect(t.extension<OhColorRoles>(), same(roles));
+      });
+      _test('$name error is the urgency role, not warmth', () {
+        expect(t.colorScheme.error, roles.urgency);
+        expect(t.colorScheme.error, isNot(t.colorScheme.primary));
+      });
+      _test('$name chrome icons are neutral, not the accent', () {
+        expect(t.iconTheme.color, t.colorScheme.onSurfaceVariant);
+        expect(t.iconTheme.color, isNot(t.colorScheme.primary));
+      });
+    }
+    _test('light slider inactive track is neutral', () {
+      expect(OhTheme.light().sliderTheme.inactiveTrackColor, OhColors.linen300);
+    });
+  });
+
+  group('OhColorRoles.of without an OhTheme', () {
+    // Habit-lineage apps build their own ThemeData, so no extension is
+    // attached. A dark app must not get light urgency (#9B1D29) on a dark
+    // ground — the failure this token pass fixes.
+    Future<OhColorRoles> rolesUnder(WidgetTester tester, ThemeData t) async {
+      late OhColorRoles got;
+      await tester.pumpWidget(MaterialApp(
+        theme: t,
+        home: Builder(builder: (ctx) {
+          got = OhColorRoles.of(ctx);
+          return const SizedBox();
+        }),
+      ));
+      return got;
+    }
+
+    testWidgets('a dark ThemeData gets the dark roles', (tester) async {
+      final r = await rolesUnder(tester, ThemeData(brightness: Brightness.dark));
+      expect(r.urgency, OhColors.red300);
+    });
+
+    testWidgets('a light ThemeData gets the light roles', (tester) async {
+      final r = await rolesUnder(tester, ThemeData(brightness: Brightness.light));
+      expect(r.urgency, OhColors.red500);
     });
   });
 }

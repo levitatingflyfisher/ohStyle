@@ -1,5 +1,6 @@
 // packages/openhearth_design/lib/src/theme.dart
 import 'package:flutter/material.dart';
+import 'color_roles.dart';
 import 'colors.dart';
 import 'radii.dart';
 import 'typography.dart';
@@ -44,17 +45,18 @@ abstract final class OhTheme {
     );
     return _baseTheme(
       cs: cs,
+      roles: OhColorRoles.light,
       primary: primary,
       scaffold: OhColors.linen50,
       onSurfaceForChrome: OhColors.linen900,
       cardColor: OhColors.linen100,
       buttonFg: Colors.white,
       inputFill: OhColors.linen100,
-      inputBorder: OhColors.linen300,
-      inputHint: OhColors.linen400,
-      inputLabel: OhColors.linen500,
+      inputBorder: OhColors.linen500,
+      inputHint: OhColors.linen600,
+      inputLabel: OhColors.linen700,
       dividerColor: OhColors.linen200,
-      sliderInactive: primary.withValues(alpha: 0.18),
+      sliderInactive: OhColors.linen300,
       sliderOverlayAlpha: 0.15,
       textThemeIsDark: false,
     );
@@ -77,22 +79,23 @@ abstract final class OhTheme {
       onSurfaceVariant: OhColors.linen300,
       outline: OhColors.darkBorderDefault,
       outlineVariant: OhColors.darkBorderSubtle,
-      error: OhColors.red500,
-      onError: Colors.white,
-      errorContainer: OhColors.red500,
-      onErrorContainer: OhColors.linen100,
+      error: OhColors.red300,
+      onError: OhColors.linen900,
+      errorContainer: OhColors.darkUrgencySurface,
+      onErrorContainer: OhColors.red300,
     );
     return _baseTheme(
       cs: cs,
+      roles: OhColorRoles.hearthDark,
       primary: primary,
       scaffold: OhColors.darkSurfaceBase,
       onSurfaceForChrome: OhColors.linen100,
       cardColor: OhColors.darkSurfaceCard,
       buttonFg: OhColors.linen900,
       inputFill: OhColors.darkSurfaceCard,
-      inputBorder: OhColors.darkBorderSubtle,
-      inputHint: OhColors.linen500,
-      inputLabel: OhColors.linen400,
+      inputBorder: OhColors.linen500,
+      inputHint: OhColors.linen400,
+      inputLabel: OhColors.linen300,
       dividerColor: OhColors.darkBorderSubtle,
       sliderInactive: OhColors.darkBorderDefault,
       sliderOverlayAlpha: 0.2,
@@ -120,20 +123,21 @@ abstract final class OhTheme {
       onSurfaceVariant: OhColors.nightTextDim,
       outline: OhColors.nightBorder,
       outlineVariant: OhColors.nightBorder,
-      error: OhColors.red500,
-      onError: Colors.white,
-      errorContainer: OhColors.red500,
-      onErrorContainer: OhColors.nightTextPrimary,
+      error: OhColors.red300,
+      onError: OhColors.nightSurfaceBase,
+      errorContainer: OhColors.nightUrgencySurface,
+      onErrorContainer: OhColors.red300,
     );
     return _baseTheme(
       cs: cs,
+      roles: OhColorRoles.night,
       primary: primary,
       scaffold: OhColors.nightSurfaceBase,
       onSurfaceForChrome: OhColors.nightTextPrimary,
       cardColor: OhColors.nightSurfaceCard,
       buttonFg: OhColors.nightSurfaceBase,
       inputFill: OhColors.nightSurfaceElevated,
-      inputBorder: OhColors.nightBorder,
+      inputBorder: OhColors.nightBorderControl,
       inputHint: OhColors.nightTextDim,
       inputLabel: OhColors.nightTextDim,
       dividerColor: OhColors.nightBorder,
@@ -156,6 +160,7 @@ abstract final class OhTheme {
   /// builder itself stays identical so every theme speaks the same grammar.
   static ThemeData _baseTheme({
     required ColorScheme cs,
+    required OhColorRoles roles,
     required Color primary,
     required Color scaffold,
     required Color onSurfaceForChrome,
@@ -175,6 +180,7 @@ abstract final class OhTheme {
     return ThemeData(
       useMaterial3: true,
       colorScheme: cs,
+      extensions: [roles],
       scaffoldBackgroundColor: scaffold,
       textTheme: _buildTextTheme(
         isDark: textThemeIsDark,
@@ -239,16 +245,22 @@ abstract final class OhTheme {
         labelStyle: TextStyle(color: inputLabel),
       ),
       dividerTheme: DividerThemeData(color: dividerColor, thickness: 1),
-      // Deliberate, app-wide: plain icons pick up the brand accent without
-      // every call site setting a color. The tradeoff: Flutter 3.38.7
-      // resolves this ambient color ABOVE `IconButton.filled` /
-      // `.filledTonal`'s own `defaultStyleOf`, so an unstyled filled icon
-      // button paints its glyph in `primary` — the same color it just
-      // filled its own background with, i.e. invisible. Use
-      // `OhIconButton.filled` / `.filledTonal` (in `icon_buttons.dart`)
-      // for those two variants; it pins the correct foreground at the
-      // widget level, which outranks this theme setting.
-      iconTheme: IconThemeData(color: primary),
+      // List rows read title-over-detail by weight and one ladder step,
+      // not by an 18-over-16 regular pair (Material's bodyLarge/bodyMedium).
+      listTileTheme: ListTileThemeData(
+        titleTextStyle: OhTypography.listTitle(color: cs.onSurface),
+        subtitleTextStyle: OhTypography.listSubtitle(color: cs.onSurfaceVariant),
+      ),
+      // Chrome is neutral (colour language rule 4): plain icons take the
+      // neutral `onSurfaceVariant`, not warmth, so the accent stays kept
+      // for the one primary action. Until 0.7.0 this was `primary`.
+      // Flutter 3.38.7 still resolves this ambient color ABOVE
+      // `IconButton.filled` / `.filledTonal`'s own `defaultStyleOf`, so an
+      // unstyled filled icon button paints its glyph in this neutral over
+      // its primary fill instead of `onPrimary`. Use `OhIconButton.filled`
+      // / `.filledTonal` (in `icon_buttons.dart`) for those two variants;
+      // it pins the correct foreground at the widget level.
+      iconTheme: IconThemeData(color: cs.onSurfaceVariant),
       bottomSheetTheme: const BottomSheetThemeData(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
@@ -293,7 +305,8 @@ abstract final class OhTheme {
       bodyMedium:     OhTypography.body(color: textColor),
       bodySmall:      OhTypography.bodySm(color: secondaryColor),
       labelLarge:     OhTypography.button(color: textColor),
-      labelMedium:    OhTypography.caption(color: secondaryColor),
+      // Two slots, two roles: until 0.7.0 both were `caption`.
+      labelMedium:    OhTypography.label(color: secondaryColor),
       labelSmall:     OhTypography.caption(color: secondaryColor),
     );
   }

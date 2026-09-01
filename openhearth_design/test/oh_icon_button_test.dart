@@ -5,12 +5,12 @@ import 'package:openhearth_design/openhearth_design.dart';
 
 /// Regression coverage for the filled-icon-button collision documented at
 /// `theme.dart`'s `iconTheme:` line: `OhTheme` sets an app-wide
-/// `ThemeData.iconTheme.color = primary`. Flutter 3.38.7's
-/// `IconButtonTheme.resolve` applies that ambient color ABOVE
-/// `IconButton.filled`'s own `defaultStyleOf` (which would otherwise pick
-/// `onPrimary`), so an unstyled `IconButton.filled` paints its glyph in
-/// `primary` — the same color it just filled its own background with. The
-/// glyph is invisible. `OhIconButton` pins the correct foreground at the
+/// `ThemeData.iconTheme.color` (neutral `onSurfaceVariant` since 0.7.0,
+/// `primary` before). Flutter 3.38.7's `IconButtonTheme.resolve` applies
+/// that ambient color ABOVE `IconButton.filled`'s own `defaultStyleOf`
+/// (which would otherwise pick `onPrimary`), so an unstyled
+/// `IconButton.filled` paints its glyph in the ambient color over its own
+/// primary fill. `OhIconButton` pins the correct foreground at the
 /// widget level, the highest-precedence style layer, to fix this.
 void main() {
   // Every public OhTheme constructor, per `theme.dart`.
@@ -82,15 +82,15 @@ void main() {
 
       // Collision witness: this is what OhIconButton exists to fix. A bare
       // Flutter IconButton.filled, unstyled, under our theme, paints its
-      // glyph in `primary` — the exact color of its own fill, i.e.
-      // invisible. If this test starts failing, either Flutter's
+      // glyph in the ambient iconTheme color (neutral since 0.7.0; the
+      // fill color itself before), not `onPrimary`. If this test starts failing, either Flutter's
       // IconButtonTheme resolution order changed or OhTheme stopped
       // setting the app-wide iconTheme; either way, re-read the comment at
       // theme.dart's `iconTheme:` line and reconsider whether
       // OhIconButton is still needed before touching this assertion.
       testWidgets(
-          'collision witness: a bare IconButton.filled resolves to '
-          'primary (its own fill color) under this theme', (tester) async {
+          'collision witness: a bare IconButton.filled resolves to the '
+          'ambient iconTheme, not onPrimary, under this theme', (tester) async {
         final theme = themeBuilder();
         await pump(
           tester,
@@ -103,7 +103,8 @@ void main() {
 
         final resolved = resolvedIconColor(tester, find.byType(IconButton));
 
-        expect(resolved, theme.colorScheme.primary);
+        expect(resolved, theme.iconTheme.color);
+        expect(resolved, isNot(theme.colorScheme.onPrimary));
       });
     });
   }

@@ -9,9 +9,9 @@ export const OhColors = {
   hearth100: '#F8E8E3',
   hearth200: '#EDCDC5',
   hearth300: '#D9A99E',
-  hearth400: '#C47B6A',
-  hearth500: '#A85040', // primary interactive
-  hearth600: '#8B3E2F',
+  hearth400: '#CD8366', // hearthDark warmth
+  hearth500: '#9E4D2C', // light warmth (primary)
+  hearth600: '#893F21', // light warmth, pressed
   hearth700: '#6E2F22',
   hearth800: '#511F15',
   hearth900: '#370F09',
@@ -31,21 +31,31 @@ export const OhColors = {
   // Sage — nature/success
   sage100: '#E0EFEA',
   sage200: '#BED8CE',
+  sage300: '#7DBB9A',
   sage400: '#7BAF96',
   sage500: '#5E9478',
   sage600: '#4A7B65',
+  sage700: '#386D54',
 
   // Slate — informational/calm
   slate100: '#DDE5F1',
+  slate200: '#8FB4E4',
   slate300: '#97ACCA',
   slate500: '#5C7599',
+  slate600: '#39659B',
   slate700: '#3A5070',
 
-  // Semantic accents
-  amber100: '#F5E9C8',
-  amber400: '#C49A3C',
-  red100:   '#F5DDD9',
-  red500:   '#B0382A',
+  // Urgency, caution, pointing-out (style guide §2.3)
+  amber100: '#FCEDCD',
+  amber300: '#E7B551',
+  amber400: '#C49A3C', // legacy: 2.29:1, not for text or icons
+  amber500: '#A0701A',
+  amber700: '#805307',
+  red100:   '#FFE7E6',
+  red300:   '#FF939C',
+  red500:   '#9B1D29',
+  successSurface:   '#E1F4E9',
+  attentionSurface: '#E4F0FF',
 
   // Hearth-dark surfaces (evening theme — warm brown-black)
   darkSurfaceBase:     '#1C1007',
@@ -54,14 +64,23 @@ export const OhColors = {
   darkSurfaceHigh:     '#4A2E1F',
   darkBorderSubtle:    '#5A3A28',
   darkBorderDefault:   '#6B4A34',
+  darkUrgencySurface:   '#4B1D1F',
+  darkWarningSurface:   '#3E2D10',
+  darkSuccessSurface:   '#1B3427',
+  darkAttentionSurface: '#202F42',
 
   // Night surfaces (deep-reading theme — neutral, leaves the warm family)
   nightSurfaceBase:     '#0A0A0C',
   nightSurfaceCard:     '#141418',
   nightSurfaceElevated: '#1F1F25',
   nightBorder:          '#2A2A32',
+  nightBorderControl:   '#76767F',
   nightTextPrimary:     '#EDEDF0',
   nightTextDim:         '#A0A0AC',
+  nightUrgencySurface:   '#421B1C',
+  nightWarningSurface:   '#37290F',
+  nightSuccessSurface:   '#192E23',
+  nightAttentionSurface: '#1D2A3A',
 } as const;
 
 export type OhColorKey = keyof typeof OhColors;

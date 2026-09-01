@@ -10,13 +10,14 @@ enum _OhIconButtonVariant { filled, filledTonal }
 ///
 /// ## Why this exists
 ///
-/// `OhTheme` sets an app-wide `ThemeData.iconTheme = IconThemeData(color:
-/// primary)` (see the comment at `theme.dart`'s `iconTheme:` line). Flutter
-/// 3.38.7 resolves that ambient color ABOVE `IconButton.filled`'s own
-/// `defaultStyleOf`, so an unstyled `IconButton.filled` paints its glyph in
-/// `primary` — the exact color it just filled its own background with. The
-/// glyph is invisible. `IconButton.filledTonal` has the same problem: it
-/// gets `primary` instead of `onSecondaryContainer`.
+/// `OhTheme` sets an app-wide `ThemeData.iconTheme` (the neutral
+/// `onSurfaceVariant` since 0.7.0; `primary` before — see the comment at
+/// `theme.dart`'s `iconTheme:` line). Flutter 3.38.7 resolves that ambient
+/// color ABOVE `IconButton.filled`'s own `defaultStyleOf`, so an unstyled
+/// `IconButton.filled` paints its glyph in the ambient neutral over its
+/// primary fill instead of `onPrimary` — a low-contrast glyph (until 0.7.0,
+/// an invisible one). `IconButton.filledTonal` has the same problem: it
+/// gets the ambient color instead of `onSecondaryContainer`.
 ///
 /// Use `OhIconButton.filled` / `OhIconButton.filledTonal` anywhere the plain
 /// Material widgets would otherwise be used, and the glyph resolves

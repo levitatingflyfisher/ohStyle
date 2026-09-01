@@ -14,9 +14,9 @@
   --oh-hearth-100: #F8E8E3;
   --oh-hearth-200: #EDCDC5;
   --oh-hearth-300: #D9A99E;
-  --oh-hearth-400: #C47B6A;
-  --oh-hearth-500: #A85040;  /* primary interactive */
-  --oh-hearth-600: #8B3E2F;
+  --oh-hearth-400: #CD8366;  /* hearthDark warmth */
+  --oh-hearth-500: #9E4D2C;  /* light warmth (primary) */
+  --oh-hearth-600: #893F21;  /* light warmth, pressed */
   --oh-hearth-700: #6E2F22;
   --oh-hearth-800: #511F15;
   --oh-hearth-900: #370F09;
@@ -25,32 +25,43 @@
   --oh-linen-50:  #FBF8F4;  /* app background */
   --oh-linen-100: #F5EFE6;  /* card surface */
   --oh-linen-200: #EAE1D4;  /* subtle dividers */
-  --oh-linen-300: #C7B9A0;  /* borders, inactive icons */
-  --oh-linen-400: #B3A08A;  /* placeholder text */
-  --oh-linen-500: #8C7B65;  /* secondary text */
-  --oh-linen-600: #6E5F4C;  /* body text (softer) */
-  --oh-linen-700: #4D3E2E;  /* body text default */
+  --oh-linen-300: #C7B9A0;  /* decorative borders; dark secondary text */
+  --oh-linen-400: #B3A08A;  /* dark hint text; never text on light (2.21:1) */
+  --oh-linen-500: #8C7B65;  /* control borders (3:1); not text on light */
+  --oh-linen-600: #6E5F4C;  /* light secondary text + hint (5.40:1) */
+  --oh-linen-700: #4D3E2E;  /* light label text, neutral icons */
   --oh-linen-800: #35281C;  /* headings */
   --oh-linen-900: #2C1810;  /* primary text */
 
   /* ── Sage — nature/success ───────────────────────────────────────────── */
   --oh-sage-100: #E0EFEA;
   --oh-sage-200: #BED8CE;
+  --oh-sage-300: #7DBB9A;  /* dark/night success */
   --oh-sage-400: #7BAF96;
   --oh-sage-500: #5E9478;
   --oh-sage-600: #4A7B65;
+  --oh-sage-700: #386D54;  /* light success */
 
   /* ── Slate — informational/calm ─────────────────────────────────────── */
   --oh-slate-100: #DDE5F1;
+  --oh-slate-200: #8FB4E4;  /* dark/night attention */
   --oh-slate-300: #97ACCA;
   --oh-slate-500: #5C7599;
+  --oh-slate-600: #39659B;  /* light attention (pointing-out, links) */
   --oh-slate-700: #3A5070;
 
-  /* ── Semantic accents (sparingly) ────────────────────────────────────── */
-  --oh-amber-100: #F5E9C8;
-  --oh-amber-400: #C49A3C;
-  --oh-red-100:   #F5DDD9;
-  --oh-red-500:   #B0382A;
+  /* ── Urgency, caution, pointing-out (style guide §2.3) ──────────────── */
+  /* Urgency never relies on hue: always an icon and a word as well. */
+  --oh-amber-100: #FCEDCD;  /* light warning surface */
+  --oh-amber-300: #E7B551;  /* dark/night warning */
+  --oh-amber-400: #C49A3C;  /* legacy: 2.29:1, not for text or icons */
+  --oh-amber-500: #A0701A;  /* light warning icon (marks only) */
+  --oh-amber-700: #805307;  /* light warning text */
+  --oh-red-100:   #FFE7E6;  /* light urgency surface */
+  --oh-red-300:   #FF939C;  /* dark/night urgency */
+  --oh-red-500:   #9B1D29;  /* light urgency */
+  --oh-success-surface:   #E1F4E9;
+  --oh-attention-surface: #E4F0FF;
 
   /* ── Hearth-dark surface palette (evening theme) ─────────────────────── */
   --oh-dark-surface-base:     #1C1007;
@@ -59,6 +70,10 @@
   --oh-dark-surface-high:     #4A2E1F;
   --oh-dark-border-subtle:    #5A3A28;
   --oh-dark-border-default:   #6B4A34;
+  --oh-dark-urgency-surface:   #4B1D1F;
+  --oh-dark-warning-surface:   #3E2D10;
+  --oh-dark-success-surface:   #1B3427;
+  --oh-dark-attention-surface: #202F42;
 
   /* ── Night surface palette (deep-reading theme) ──────────────────────── */
   /* Neutral grays; leaves the hearth/linen family on purpose. Used when the
@@ -68,8 +83,13 @@
   --oh-night-surface-card:     #141418;
   --oh-night-surface-elevated: #1F1F25;
   --oh-night-border:           #2A2A32;
+  --oh-night-border-control:   #76767F;
   --oh-night-text-primary:     #EDEDF0;
   --oh-night-text-dim:         #A0A0AC;
+  --oh-night-urgency-surface:   #421B1C;
+  --oh-night-warning-surface:   #37290F;
+  --oh-night-success-surface:   #192E23;
+  --oh-night-attention-surface: #1D2A3A;
 
   /* ── Spacing ─────────────────────────────────────────────────────────── */
   --oh-space-xs:  4px;
@@ -119,13 +139,25 @@
   --oh-color-surface:           var(--oh-linen-100);
   --oh-color-text-primary:      var(--oh-linen-900);
   --oh-color-text-secondary:    var(--oh-linen-700);
-  --oh-color-text-tertiary:     var(--oh-linen-500);
+  --oh-color-text-tertiary:     var(--oh-linen-600);
   --oh-color-interactive:       var(--oh-hearth-500);
   --oh-color-interactive-hover: var(--oh-hearth-600);
+  --oh-color-icon:              var(--oh-linen-700);
   --oh-color-border:            var(--oh-linen-300);
   --oh-color-border-subtle:     var(--oh-linen-200);
+  --oh-color-border-control:    var(--oh-linen-500);
   --oh-color-error:             var(--oh-red-500);
-  --oh-color-success:           var(--oh-sage-500);
+  --oh-color-on-error:          #FFFFFF;
+  --oh-color-error-surface:     var(--oh-red-100);
+  --oh-color-warning-text:      var(--oh-amber-700);
+  --oh-color-warning-icon:      var(--oh-amber-500);
+  --oh-color-warning-surface:   var(--oh-amber-100);
+  --oh-color-success:           var(--oh-sage-700);
+  --oh-color-success-surface:   var(--oh-success-surface);
+  --oh-color-attention:         var(--oh-slate-600);
+  --oh-color-attention-surface: var(--oh-attention-surface);
+  --oh-color-info:              var(--oh-slate-700);
+  --oh-color-text-link:         var(--oh-slate-600);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -134,11 +166,25 @@
     --oh-color-surface:           var(--oh-dark-surface-card);
     --oh-color-text-primary:      var(--oh-linen-100);
     --oh-color-text-secondary:    var(--oh-linen-300);
-    --oh-color-text-tertiary:     var(--oh-linen-500);
+    --oh-color-text-tertiary:     var(--oh-linen-400);
     --oh-color-interactive:       var(--oh-hearth-400);
     --oh-color-interactive-hover: var(--oh-hearth-300);
+    --oh-color-icon:              var(--oh-linen-300);
     --oh-color-border:            var(--oh-dark-border-default);
     --oh-color-border-subtle:     var(--oh-dark-border-subtle);
+    --oh-color-border-control:    var(--oh-linen-500);
+    --oh-color-error:             var(--oh-red-300);
+    --oh-color-on-error:          var(--oh-linen-900);
+    --oh-color-error-surface:     var(--oh-dark-urgency-surface);
+    --oh-color-warning-text:      var(--oh-amber-300);
+    --oh-color-warning-icon:      var(--oh-amber-300);
+    --oh-color-warning-surface:   var(--oh-dark-warning-surface);
+    --oh-color-success:           var(--oh-sage-300);
+    --oh-color-success-surface:   var(--oh-dark-success-surface);
+    --oh-color-attention:         var(--oh-slate-200);
+    --oh-color-attention-surface: var(--oh-dark-attention-surface);
+    --oh-color-info:              var(--oh-slate-300);
+    --oh-color-text-link:         var(--oh-slate-200);
 
     /* Dark shadows are pure black with higher alpha — the eye reads
        elevation via contrast, not warmth, on a dark background. */

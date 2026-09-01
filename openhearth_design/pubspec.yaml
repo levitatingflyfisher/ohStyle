@@ -1,6 +1,6 @@
 name: openhearth_design
 description: Design tokens, typography, tri-theme (light/hearthDark/night), elevation, and motion for all OpenHearth apps.
-version: 0.5.0
+version: 0.9.0
 publish_to: none
 
 environment:
@@ -14,3 +14,30 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^4.0.0
+
+# The canonical faces, declared as package fonts so every consumer gets them
+# offline without its own copies. Apps reach them as
+# `packages/openhearth_design/<Family>`; OhTypography passes
+# `package: 'openhearth_design'`. Only the faces that exist are declared
+# (no Lora 300/600, no Nunito italic); test/font_bundle_test.dart checks each
+# declared weight/style against the file's own OS/2 table.
+flutter:
+  fonts:
+    - family: Lora
+      fonts:
+        - asset: fonts/Lora-Regular.ttf
+        - asset: fonts/Lora-Italic.ttf
+          style: italic
+        - asset: fonts/Lora-Medium.ttf
+          weight: 500
+        - asset: fonts/Lora-Bold.ttf
+          weight: 700
+    - family: Nunito
+      fonts:
+        - asset: fonts/Nunito-Regular.ttf
+        - asset: fonts/Nunito-Medium.ttf
+          weight: 500
+        - asset: fonts/Nunito-SemiBold.ttf
+          weight: 600
+        - asset: fonts/Nunito-Bold.ttf
+          weight: 700
