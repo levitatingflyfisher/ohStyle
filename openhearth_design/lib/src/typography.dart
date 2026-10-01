@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 
 /// OpenHearth typography roles.
@@ -19,9 +20,10 @@ abstract final class OhTypography {
   static const _heading = 'Lora';
   static const _ui = 'Nunito';
 
-  /// Platform monospace. No monospace file is bundled anywhere in the fleet
-  /// (the old `JetBrains Mono` request resolved to nothing), so [code] asks
-  /// for the platform's generic family rather than a face that is not there.
+  /// Platform monospace, for [code] on native. No monospace file is bundled
+  /// anywhere in the fleet (the old `JetBrains Mono` request resolved to
+  /// nothing), so native asks for the platform's generic family. The web has
+  /// no platform fonts, so there [code] uses [_ui] instead.
   static const _mono = 'monospace';
 
   /// The one type ladder: 16 px body, stepped by about 1.2 (a minor third)
@@ -156,13 +158,46 @@ abstract final class OhTypography {
         height: 1.4, letterSpacing: 0.2, color: color,
       );
 
-  // ── Mono — platform monospace ───────────────────────────────────────────
+  // ── Code — platform monospace on native, Nunito on the web ────────────
 
-  static TextStyle code({Color? color}) => TextStyle(
-        fontFamily: _mono,
-        fontSize: 13, fontWeight: FontWeight.w400,
-        height: 1.4, color: color,
-      );
+  /// Codes, keys, raw values and error details.
+  ///
+  /// Native: the platform `monospace` (no package prefix, which would name a
+  /// family that exists nowhere). Web: the bundled Nunito. A Flutter web
+  /// build has no platform fonts; `monospace` there used to fall back to the
+  /// Roboto the engine fetched from Google's CDN, and once the PWAs stopped
+  /// doing that (conformance C13) CanvasKit drew it as nothing. Nunito's
+  /// digits are all one width (0.6 em), so numbers still line up in
+  /// columns; letters are proportional, so the web loses fixed-width
+  /// alignment of text. [web] exists for tests; leave it to default.
+  ///
+  /// **Pass [color].** The style is `inherit: false`, so it takes nothing
+  /// from the ambient [DefaultTextStyle] or the theme. Every theme text
+  /// style here carries `package: 'openhearth_design'`, and
+  /// [TextStyle.merge] keeps the ambient package when the incoming style
+  /// has none, so an inheriting `monospace` reached the engine as
+  /// `packages/openhearth_design/monospace`, a family nothing answers to,
+  /// and native drew it in the proportional default face. Not inheriting is
+  /// the only way a style can keep an unprefixed family under a packaged
+  /// ambient. Both faces do it, so a missing [color] shows on the web as
+  /// well as on Android. A non-inheriting style must be complete, and a
+  /// `TextField` asserts on one without a [TextStyle.textBaseline], so it
+  /// sets one. test/code_face_test.dart pumps it in all three themes, in a
+  /// `Text` and a `TextField`.
+  static TextStyle code({Color? color, bool web = kIsWeb}) => web
+      ? TextStyle(
+          inherit: false, textBaseline: TextBaseline.alphabetic,
+          fontFamily: _ui, package: _package,
+          fontSize: 13, fontWeight: FontWeight.w400,
+          height: 1.4, color: color,
+          fontFeatures: const [FontFeature.tabularFigures()],
+        )
+      : TextStyle(
+          inherit: false, textBaseline: TextBaseline.alphabetic,
+          fontFamily: _mono,
+          fontSize: 13, fontWeight: FontWeight.w400,
+          height: 1.4, color: color,
+        );
 
   // ── Material-slot ladder — habit-lineage apps ──────────────────────────
 

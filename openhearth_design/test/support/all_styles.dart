@@ -27,6 +27,7 @@ Map<String, TextStyle?> allOhTextStyles() {
     'listTitle': OhTypography.listTitle(),
     'listSubtitle': OhTypography.listSubtitle(),
     'code': OhTypography.code(),
+    'code.web': OhTypography.code(web: true),
   };
 
   void addTextTheme(String prefix, TextTheme tt) {

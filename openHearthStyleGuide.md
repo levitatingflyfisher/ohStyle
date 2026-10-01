@@ -311,7 +311,7 @@ A rounded humanist sans. The roundedness contributes to the warmth; the sans-nes
 
 *Use for:* All UI text, body paragraphs, labels, captions, buttons, navigation.
 
-**Mono:** the platform's `monospace`. No monospace file is bundled anywhere in the fleet, so `OhTypography.code()` asks for the generic family rather than a face that is not there. (`tokens.css` still names JetBrains Mono for Glean's web frontend.)
+**Mono:** the platform's `monospace` on native. No monospace file is bundled anywhere in the fleet, so `OhTypography.code()` asks for the generic family rather than a face that is not there. On the web there are no platform fonts (and the PWAs no longer fetch the CDN Roboto that `monospace` used to fall back to), so there `code()` uses the bundled Nunito, whose digits are all one width. `code()` is `inherit: false` (the theme's packaged styles would otherwise prefix `monospace` into a family nobody has), so pass it a `color:`. (`tokens.css` still names JetBrains Mono for Glean's web frontend.)
 
 Lora and Nunito are OFL-licensed. The canonical files live in `openhearth_design/fonts/` (Lora 400, 400 italic, 500, 700; Nunito 400, 500, 600, 700; `OFL.txt`). Since 0.7.1 `openhearth_design` declares them as package fonts and every `OhTypography` style names them with `package: 'openhearth_design'`, so apps get them without copies; nothing fetches from `fonts.google.com` at runtime. **There is no Lora 300 or 600 and no Nunito italic file anywhere in the fleet** — do not request those weights; Flutter would silently substitute a neighbour or synthesise a fake.
 
@@ -368,7 +368,7 @@ type-button:         Nunito 600, 16
 type-button-sm:      Nunito 600, 13, +0.2px
 type-list-title:     Nunito 600, 16         (ListTile title)
 type-list-subtitle:  Nunito 400, 13         (ListTile subtitle)
-type-code:           monospace 400, 13
+type-code:           monospace 400, 13 (web: Nunito 400, 13)
 ```
 
 ### 3.5 Typography Rules

@@ -1,5 +1,50 @@
 # Changelog
 
+## 0.9.2
+
+`OhTypography.code()` keeps its family inside a themed `Text`.
+
+- **The bug.** Every theme text style here carries
+  `package: 'openhearth_design'`. `Text`, `SelectableText` and `TextField`
+  merge their style into that ambient one, and `TextStyle.merge` keeps the
+  ambient package when the incoming style has none. So the native face's
+  `monospace` reached the engine as `packages/openhearth_design/monospace`,
+  which nothing answers to, and Android drew sync codes, barcodes and error
+  details in the proportional default face. Found in Trellis's reader
+  (nocdn3), where an app-bundled mono drew blank on the web for the same
+  reason.
+- **The fix.** Both faces are `inherit: false`, the only way a style keeps
+  an unprefixed family under a packaged ambient. A non-inheriting style
+  must be complete: it sets `textBaseline` (a `TextField` asserts without
+  one) and takes nothing from the theme, so **pass `color:`**. Both faces
+  do it, so a missing colour shows on the web too, not only on Android.
+- `test/code_face_test.dart` pumps `code()` in a `Text` and a `TextField`
+  under all three themes and reads the merged style the engine gets: red
+  before (`packages/openhearth_design/monospace`, six failures), green
+  after.
+
+## 0.9.1
+
+`OhTypography.code()` draws on the web.
+
+- **The bug.** `code()` asked for the platform `monospace`. A Flutter web
+  build has no platform fonts, so that text drew in the Roboto the engine
+  fetched from fonts.gstatic.com, and once a PWA stops fetching it
+  (conformance C13, `web/flutter_bootstrap.js`) CanvasKit draws it as
+  nothing at all. Seen on WeatherGlass's "What leaves your device" screen;
+  Peckish and StillLife sync codes, Reckon's bounty paste box, Trellis's
+  code blocks and every `OhErrorState` details panel were next.
+- **The fix.** On the web `code()` is the bundled Nunito 400/13 (the same
+  size, weight and height), with tabular figures requested. Nunito has no
+  `tnum` feature, but all ten digits are already 0.6 em in every weight, so
+  numbers line up; `test/code_face_test.dart` measures it. Native keeps the
+  platform `monospace`, unprefixed.
+- **No monospace file bundled.** The web never had fixed width (it was
+  Roboto), so this is no regression, and a bundled mono would add bytes to
+  every consumer. Cost: text that relies on fixed-width columns (Trellis's
+  code and table blocks) is proportional on the web.
+- `code({bool web = kIsWeb})`: the parameter is for tests.
+
 ## 0.9.0
 
 Bar commands fold by space, not at a fixed text scale.

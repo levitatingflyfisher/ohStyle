@@ -151,7 +151,7 @@ class _OhErrorStateState extends State<OhErrorState> {
                         '$error',
                         if (widget.stackTrace != null) '${widget.stackTrace}',
                       ].join('\n\n'),
-                      // The ladder's code face (platform monospace). Not
+                      // The ladder's code face (monospace; Nunito on web). Not
                       // bodySmall.copyWith(fontFamily:): a themed style
                       // carries package: 'openhearth_design', so copyWith
                       // would prefix the family into one nobody bundles.

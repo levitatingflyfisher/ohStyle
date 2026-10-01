@@ -201,7 +201,7 @@ Every Lora/Nunito style resolves to the package font
 | `caption()` | Nunito | 13 | 400 | Annotations |
 | `button()` / `buttonSm()` | Nunito | 16/13 | 600 | Button labels |
 | `listTitle()` / `listSubtitle()` | Nunito | 16/13 | 600/400 | List rows (wired into `listTileTheme`) |
-| `code()` | platform `monospace` | 13 | 400 | Code, numeric display |
+| `code()` | platform `monospace`; Nunito on web. `inherit: false`: pass `color:` | 13 | 400 | Code, numeric display |
 
 All methods accept an optional `Color? color` override. Body leading is 1.4.
 
