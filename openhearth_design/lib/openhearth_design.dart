@@ -14,3 +14,4 @@ export 'src/error_state.dart';
 export 'src/delete_policy.dart';
 export 'src/theme_mode.dart';
 export 'src/page.dart';
+export 'src/whole_words_text.dart';

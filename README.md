@@ -363,6 +363,20 @@ On desktop and web a mouse wheel over the side margins scrolls the content:
 the content the child's own scrollable takes the wheel, so nothing scrolls
 twice. Trackpad pan over the margins is not forwarded.
 
+#### Whole words at large text — `OhWholeWordsText` (v0.9.3)
+
+A big style on a narrow line at large text can't hold its longest word,
+so a plain `Text` breaks it mid-word (Reckon's empty Home read
+"de / cisions" at 320 dp × 3.0). `OhWholeWordsText` lowers the text scale
+just enough for the longest word to fit and never goes below 1x, so the
+text still grows with the reader's setting, only less. Use it for
+headlines and short labels, not body prose (body words fit anyway).
+
+```dart
+OhWholeWordsText('No open decisions yet.',
+    style: Theme.of(context).textTheme.headlineMedium)
+```
+
 #### Top-bar commands — `OhBarAction`, `OhBarActions`, `OhBarOverflow` (v0.8)
 
 The fleet ruling on top bars: **icon plus a short visible label; rare

@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.9.3
+
+`OhWholeWordsText`: a `Text` whose words never break mid-word. At large
+text a big style on a narrow line can't hold its longest word; the widget
+lowers the text scale just enough for that word to fit, never below 1x.
+Moved here from Reckon (its empty Home headline read "de / cisions" at
+320 dp × 3.0) so the next app doesn't grow a second copy.
+
 ## 0.9.2
 
 `OhTypography.code()` keeps its family inside a themed `Text`.
